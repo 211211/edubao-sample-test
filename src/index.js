@@ -1,12 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import EntriesStore from './Stores/EntriesStore';
+import ViewStore from './Stores/ViewStore';
+import EntriesContainer from './Containers/EntriesContainer';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const initialState = window.initialState && JSON.parse(window.initialState) || {};
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+var entriesStore = EntriesStore.fromJS(initialState.entries || []);
+var viewStore = new ViewStore();
+
+ReactDOM.render(
+  <EntriesContainer entriesStore={entriesStore} viewStore={viewStore} />,
+  document.getElementById('root')
+);
+
+if (module.hot) {
+  module.hot.accept('./Containers/EntriesContainer', () => {
+    var NewEntriesContainer = require('./Containers/EntriesContainer').default;
+    ReactDOM.render(
+      <NewEntriesContainer entriesStore={entriesStore} viewStore={viewStore} />,
+      document.getElementById('root')
+    );
+  });
+}
