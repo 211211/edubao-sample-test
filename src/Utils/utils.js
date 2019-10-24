@@ -1,3 +1,5 @@
+import COLOURS from '../Constants/Colours'
+
 export function	uuid() {
 	/*jshint bitwise:false */
 	var i, random;
@@ -13,4 +15,15 @@ export function	uuid() {
 	}
 
 	return uuid;
+}
+
+// Return current date as DD.MM.YYYY
+// Ex: 25.10.2019
+export function newLocaleDate() {
+	return (new Date()).toLocaleDateString('vi-VN').split('/').join('.')
+}
+
+export function randomColour() {
+	const randomIndexColour = Math.floor(Math.random() * Object.keys(COLOURS).length)
+	return COLOURS[randomIndexColour]
 }

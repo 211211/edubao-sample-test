@@ -1,20 +1,18 @@
 import {observable} from 'mobx'
+import {newLocaleDate, randomColour} from '../Utils/utils'
 
 export default class EntriesModel {
 	store
 	id
 	@observable title
-	@observable completed
 
-	constructor(store, id, title, completed) {
+	constructor(store, id, title = '', created_at = newLocaleDate(), bgColour = randomColour()) {
 		this.store = store
 		this.id = id
 		this.title = title
-		this.completed = completed
-	}
-
-	toggle() {
-		this.completed = !this.completed
+		this.created_at = created_at
+		console.log({bgColour})
+		this.bgColour = bgColour
 	}
 
 	destroy() {
@@ -29,11 +27,12 @@ export default class EntriesModel {
 		return {
 			id: this.id,
 			title: this.title,
-			completed: this.completed
+			created_at: this.created_at,
+			bgColour: this.bgColour,
 		}
 	}
 
 	static fromJS(store, object) {
-		return new EntriesModel(store, object.id, object.title, object.completed)
+		return new EntriesModel(store, object.id, object.title, object.created_at, object.bgColour)
 	}
 }

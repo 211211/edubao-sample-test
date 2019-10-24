@@ -13,7 +13,7 @@ class EntriesContainer extends React.Component {
 		return (
 			<div>
 				<header className="header">
-					<h1>entries</h1>
+					<h1>YOUR ITEMS</h1>
 					<EntriesInputComponent entriesStore={entriesStore} />
 				</header>
 				<EntriesOverviewComponent entriesStore={entriesStore} viewStore={viewStore} />

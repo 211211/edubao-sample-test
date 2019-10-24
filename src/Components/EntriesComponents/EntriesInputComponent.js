@@ -11,8 +11,8 @@ class EntriesInputComponent extends React.Component {
 	render() {
 		return (<input
 			ref="newField"
-			className="new-entry"
-			placeholder="What needs to be done?"
+			className="new-todo"
+			placeholder="New list..."
 			onKeyDown={this.handleNewEntryKeyDown}
 			autoFocus={true}
 		/>);
