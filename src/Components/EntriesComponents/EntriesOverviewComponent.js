@@ -11,7 +11,11 @@ class EntriesOverviewComponent extends React.Component {
 		if (entriesStore.entries.length === 0)
 			return null;
 		return <section className="main">
-			<ul className="todo-list">
+			<ul className="todo-list" style={{
+				display: 'flex',
+				flexDirection: 'column',
+				alignItems: 'center'
+			}}>
 				{this.props.entriesStore.entries.map(entry =>
 					(<EntryItemComponent
 						key={entry.id}

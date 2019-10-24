@@ -24,20 +24,26 @@ class EntryItemComponent extends React.Component {
 		return (
 			<li>
 				<div style={{
+					color: 'white',
 					height: 120,
 					width: 339,
 					borderRadius: 10,
 					display: 'flex',
 					alignItems: 'center',
 					flexDirection: 'column',
-					margin: 25,
+					marginTop: 27,
 					justifyContent: 'center',
 					background: multipleBackgroundsGradientColour,
 					backgroundSize: 'contain',
 				}}>
 					<div style={{
 						fontSize: 27,
-						padding: '25px 0'
+						padding: '23px 0',
+						textTransform: 'uppercase',
+						lineHeight: '32px',
+						fontWeight: 'bold',
+						boxShadow: '#00000029',
+						letterSpacing: '2.83pt'
 					}}>{entry.title}</div>
 					<div style={{
 						fontSize: 12,
