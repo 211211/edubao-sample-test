@@ -1,8 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
 import { getSnapshot, destroy, onSnapshot } from 'mobx-state-tree'
 import { connectReduxDevtools } from 'mst-middlewares'
-import './index.css';
+import './index.css'
 
 import App from './Components/App'
 import TodoStore from './Models/TodosModel'
