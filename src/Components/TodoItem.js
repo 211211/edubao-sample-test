@@ -123,6 +123,14 @@ const TodoItem = ({ todo }) => {
         setIsDeleting(!isDeleting)
     }
 
+    const onDeleteIconClicked = () => {
+        if (todo) {
+            todo.remove()
+        } else {
+            console.error('Item does not exist!')
+        }
+    }
+
     return (
         <TodoItemLiContainer>
             <TodoItemContainer
@@ -137,7 +145,7 @@ const TodoItem = ({ todo }) => {
                 isDeleting &&
                 <TodoItemLiContainer.DeleteIconWrapper>
                     <div>
-                        <i className="fa fa-trash-o" aria-hidden="true"></i>
+                        <i className="fa fa-trash-o" aria-hidden="true" onClick={onDeleteIconClicked}></i>
                     </div>
                 </TodoItemLiContainer.DeleteIconWrapper>
             }
