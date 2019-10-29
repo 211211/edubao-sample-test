@@ -4,7 +4,8 @@ import { newLocaleDate } from '../Utils/utils'
 import styled from 'styled-components'
 
 const TodoItemLiContainer = styled.li`
-
+    display: flex;
+    flex-direction: row;
 `
 
 const TodoItemContainer = styled.div`
@@ -19,6 +20,13 @@ const TodoItemContainer = styled.div`
     border-radius: 10px;
 
     color: white;
+    cursor: pointer;
+
+    opacity: 0.8;
+    transition: 0.3s;
+    &:hover {
+        opacity: 1;
+    }
 
     background-size: contain;
 
@@ -34,8 +42,8 @@ const TodoItemContainer = styled.div`
         }
 
         100% {
-            -webkit-transform: translateX(-100px);
-            transform: translateX(-100px)
+            -webkit-transform: translateX(-50px);
+            transform: translateX(-50px)
         }
     }
 
@@ -46,8 +54,8 @@ const TodoItemContainer = styled.div`
         }
 
         100% {
-            -webkit-transform: translateX(-100px);
-            transform: translateX(-100px)
+            -webkit-transform: translateX(-50px);
+            transform: translateX(-50px)
         }
     }
 `
@@ -66,32 +74,73 @@ TodoItemContainer.Date = styled.div`
     font-size: 12px;
 `
 
-const getMultipleBackground = ({bgColour, imageUrls}) => {
+TodoItemLiContainer.DeleteIconWrapper = styled.div`
+    margin-top: 27px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    div {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+
+        i {
+            display: flex;
+            align-items: center;
+            width: 50px;
+            border-radius: 50%;
+            background-color: #FF6363;
+            justify-content: center;
+            height: 50px;
+            color: white;
+
+            opacity: 0.6;
+            transition: all .2s;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+`
+
+const getMultipleBackground = ({ bgColour, imageUrls }) => {
     return `${bgColour},
         url(${_.get(imageUrls, '[0]', '')}) left no-repeat,
         url(${_.get(imageUrls, '[1]', '')}) center no-repeat,
         url(${_.get(imageUrls, '[2]', '')}) right no-repeat`
 }
 
-const TodoItem = ({todo}) => {
+const TodoItem = ({ todo }) => {
     if (_.isEmpty(todo)) {
         return null
     }
 
     const [isDeleting, setIsDeleting] = useState(false)
     const onToDoItemClicked = () => {
-        console.log('before :', isDeleting)
         setIsDeleting(!isDeleting)
     }
 
     return (
-        <TodoItemLiContainer onClick={onToDoItemClicked}>
-            <TodoItemContainer className={isDeleting ? 'slide-left' : ''} style={{
-                background: getMultipleBackground(todo),
-            }}>
+        <TodoItemLiContainer>
+            <TodoItemContainer
+                className={isDeleting ? 'slide-left' : ''}
+                style={{ background: getMultipleBackground(todo) }}
+                onClick={onToDoItemClicked}
+            >
                 <TodoItemContainer.Title>{_.get(todo, 'title', '')}</TodoItemContainer.Title>
                 <TodoItemContainer.Date>{_.get(todo, 'created_at', undefined) && newLocaleDate()}</TodoItemContainer.Date>
             </TodoItemContainer>
+            {
+                isDeleting &&
+                <TodoItemLiContainer.DeleteIconWrapper>
+                    <div>
+                        <i className="fa fa-trash-o" aria-hidden="true"></i>
+                    </div>
+                </TodoItemLiContainer.DeleteIconWrapper>
+            }
         </TodoItemLiContainer>
     );
 }
