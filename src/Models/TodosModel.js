@@ -42,8 +42,6 @@ const TodoStore = types
           bgColour: randomColour(),
           imageUrls: _.map(photos, _.property('urls.thumb')), // => ['imageUrl1', 'imageUrl2']
         }
-
-        // add new todo
         self.todos.unshift(newTodo)
 
       } catch (error) {
