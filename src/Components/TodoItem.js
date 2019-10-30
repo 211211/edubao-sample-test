@@ -57,8 +57,14 @@ const TodoItemContainer = styled.div`
         }
     }
 `
+TodoItemContainer.GradientContainer = styled.div`
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+`
 
 TodoItemContainer.Title = styled.div`
+    text-align: center;
     font-size: 27px;
     padding: 23px 0;
     text-transform: uppercase;
@@ -69,6 +75,7 @@ TodoItemContainer.Title = styled.div`
 `
 
 TodoItemContainer.Date = styled.div`
+    text-align: center;
     font-size: 12px;
 `
 
@@ -135,36 +142,17 @@ const TodoItem = ({ todo }) => {
                 onClick={onToDoItemClicked}
                 style={{
                     background: getMultipleImagesBackground(todo),
-                    backgroundRepeat: 'no-repeat, no-repeat, no-repeat',
                     backgroundSize: '33% 100%, 34% 100%, 33% 100%',
-                    backgroundPosition: 'left, center, right',
                 }}
             >
-                <div style={{
-                    borderRadius: '10px',
-                    height: '100%',
-                    width: '100%',
+                <TodoItemContainer.GradientContainer style={{
                     background: _.get(todo, 'bgColour', ''),
                 }}>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '27px',
-                        padding: '23px 0',
-                        textTransform: 'uppercase',
-                        lineHeight: '32px',
-                        fontWeight: 'bold',
-                        boxShadow: '#00000029',
-                        letterSpacing: '2.83pt',
-                    }}>{_.get(todo, 'title', '')}</div>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: 12,
-                    }}>{_.get(todo, 'created_at', undefined) && newLocaleDate()}</div>
-                </div>
+                    <TodoItemContainer.Title>
+                        {_.get(todo, 'title', '')}
+                    </TodoItemContainer.Title>
+                    <TodoItemContainer.Date>{_.get(todo, 'created_at', undefined) && newLocaleDate()}</TodoItemContainer.Date>
+                </TodoItemContainer.GradientContainer>
             </TodoItemContainer>
             {
                 isDeleting &&
