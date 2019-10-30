@@ -1,68 +1,25 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Project Description:
+Platform and Technology:
+The Mobile-Only Web App shall be a React.js website written in either JavaScript or TypeScript. Mobx StateTree shall be used for state handling.
+Other Frameworks and/ or technologies can be used without limitation.
 
-## Available Scripts
+Objective:
+Complete the sample project as close to the specification as possible. If open questions arise feel free to always ask! The focus of the sample project is:
+Creating the design as close to the prototype (https://xd.adobe.com/spec/0a33beea-2a52-4678-4558-804b0ce1c040-7c02/) as possible
+Successfully use Mobx State Tree
+Successfully wire-up an API (https://unsplash.com/developers)
 
-In the project directory, you can run:
+What does the sample project do?
+The Web-App shows a list of Entries. Each entry consists of:
+Text
+A color gradient
+Three images
 
-### `yarn start`
+The Color Gradient is picket randomly from the four predefined gradients that can be found in the developer panel in the Adobe XD Prototype (link above, see Attachment1.jpg for more information).
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A new entry can be added by entering text. Upon completion, the entry will be added to the list. The Unsplash API shall be called (https://unsplash.com/developers ) to get 3 images corresponding to the entered text. Those images will be added to the entry as seen in the XD Prototype. The API Calls shall be handled via an asynchronous action within Mobx State Tree (https://github.com/mobxjs/mobx-state-tree#asynchronous-actions ).
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+All entries and retrieved images shall be stored in the browsers cache.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Stretch Goal (if this is possible, otherwise skip):
+A user can swipe an entry to the left to reveal a delete button with which the entry can be deleted without further notice.
