@@ -28,8 +28,6 @@ const TodoItemContainer = styled.div`
         opacity: 1;
     }
 
-    background-size: contain;
-
     &.slide-left {
         -webkit-animation: slide-left .5s cubic-bezier(.25, .46, .45, .94) both;
         animation: slide-left .5s cubic-bezier(.25, .46, .45, .94) both
@@ -106,9 +104,8 @@ TodoItemLiContainer.DeleteIconWrapper = styled.div`
     }
 `
 
-const getMultipleBackground = ({ bgColour, imageUrls }) => {
-    return `${bgColour},
-        url(${_.get(imageUrls, '[0]', '')}) left no-repeat,
+const getMultipleImagesBackground = ({ imageUrls }) => {
+    return `url(${_.get(imageUrls, '[0]', '')}) left no-repeat,
         url(${_.get(imageUrls, '[1]', '')}) center no-repeat,
         url(${_.get(imageUrls, '[2]', '')}) right no-repeat`
 }
@@ -135,11 +132,39 @@ const TodoItem = ({ todo }) => {
         <TodoItemLiContainer>
             <TodoItemContainer
                 className={isDeleting ? 'slide-left' : ''}
-                style={{ background: getMultipleBackground(todo) }}
                 onClick={onToDoItemClicked}
+                style={{
+                    background: getMultipleImagesBackground(todo),
+                    backgroundRepeat: 'no-repeat, no-repeat, no-repeat',
+                    backgroundSize: '33% 100%, 34% 100%, 33% 100%',
+                    backgroundPosition: 'left, center, right',
+                }}
             >
-                <TodoItemContainer.Title>{_.get(todo, 'title', '')}</TodoItemContainer.Title>
-                <TodoItemContainer.Date>{_.get(todo, 'created_at', undefined) && newLocaleDate()}</TodoItemContainer.Date>
+                <div style={{
+                    borderRadius: '10px',
+                    height: '100%',
+                    width: '100%',
+                    background: _.get(todo, 'bgColour', ''),
+                }}>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '27px',
+                        padding: '23px 0',
+                        textTransform: 'uppercase',
+                        lineHeight: '32px',
+                        fontWeight: 'bold',
+                        boxShadow: '#00000029',
+                        letterSpacing: '2.83pt',
+                    }}>{_.get(todo, 'title', '')}</div>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: 12,
+                    }}>{_.get(todo, 'created_at', undefined) && newLocaleDate()}</div>
+                </div>
             </TodoItemContainer>
             {
                 isDeleting &&
